@@ -34,6 +34,8 @@ RUN docker-php-ext-install -j$(nproc) mysqli                                    
 # RUN touch /usr/local/etc/php/php.ini && \
 #   echo "memory_limit=-1" >> /usr/local/etc/php/php.ini
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+  && composer --ansi --version --no-interaction && \
+  rm -rf /tmp/* /tmp/.htaccess
 
 # CMD ["composer"]
